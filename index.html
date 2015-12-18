@@ -1,1 +1,65 @@
-hello 我叫张小君
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>张小君的首页</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/fullpage.js"></script>
+    <script src="js/angularjs.js"></script>
+    <link rel="stylesheet" href="css/fullpage.css">
+<style>
+    .section{
+        text-align: center;
+        overflow: hidden;
+    }
+    .section img{
+        margin: auto;
+        height: 100%;
+    }
+
+</style>
+
+</head>
+<body ng-app="loginApp">
+<div id="dowebok" ng-controller="LoginCtrl">
+    <div class="section" ng-repeat="item in imgList">
+        <img ng-src="{{item.img}}">
+    </div>
+
+</div>
+<script>
+$(function(){
+    $('#dowebok').fullpage({
+        sectionsColor : getcolorList(),
+        continuousVertical: true
+    });
+});
+    var loginApp = angular.module("loginApp", []);
+    loginApp.controller('LoginCtrl', function ($scope) {
+        $scope.imgList=getimgList();
+
+    });
+
+
+    function getimgList(){
+        var arr=[];
+        for (var i=0;i<13;i++){
+            var j=i+1;
+            var img="image/img"+j+".jpg";
+            arr.push({img:img});
+        }
+        return arr;
+    }
+
+    function getcolorList(){
+        var arr=[];
+        for (var i=0;i<13;i++){
+            var j=parseInt(Math.random()*899999+100000);
+            //var img="image/img"+j+".jpg";
+            arr.push("#"+j);
+        }
+        return arr;
+    }
+</script>
+</body>
+</html>
