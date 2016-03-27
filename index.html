@@ -2,43 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>张小君的首页</title>
+    <title>高震Love张君</title>
     <script src="js/angularjs.js"></script>
-    <link rel="stylesheet" href="css/fullpage.css">
+    <script src="js/ng-infinite-scroll.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="Shortcut Icon" href="img/favicon.png" />
     <script src="js/app.js"></script>
     <script src="js/directive/music.js"></script>
-    <style>
-        .music a.on {
-            background-position: 0px 1px;
-            -webkit-animation: reverseRotataZ 1.2s linear infinite;
-        }
-
-        @-webkit-keyframes reverseRotataZ {
-            0% {
-                -webkit-transform: rotateZ(0deg);
-            }
-            100% {
-                -webkit-transform: rotateZ(-360deg);
-            }
-        }
-
-        .music a {
-            display: inline-block;
-            width: 46px;
-            height: 46px;
-            overflow: hidden;
-            background-image: url("img/mcbg.png");
-            background-repeat: no-repeat;
-            background-size: 100%;
-        }
-
-        .music a.stop {
-            background-position: 1px bottom;
-
-        }
-
-    </style>
-
 </head>
 <body ng-app="myApp">
 <div class="music">
