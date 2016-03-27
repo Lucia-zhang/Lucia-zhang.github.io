@@ -3,63 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <title>张小君的首页</title>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/fullpage.js"></script>
     <script src="js/angularjs.js"></script>
     <link rel="stylesheet" href="css/fullpage.css">
-<style>
-    .section{
-        text-align: center;
-        overflow: hidden;
-    }
-    .section img{
-        margin: auto;
-        height: 100%;
-    }
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
 
-</style>
+        .music a.on {
+            background-position: 0px 1px;
+            -webkit-animation: reverseRotataZ 1.2s linear infinite;
+        }
+
+        @-webkit-keyframes reverseRotataZ {
+            0% {
+                -webkit-transform: rotateZ(0deg);
+            }
+            100% {
+                -webkit-transform: rotateZ(-360deg);
+            }
+        }
+
+        .music a {
+            display: inline-block;
+            width: 46px;
+            height: 46px;
+            overflow: hidden;
+            background-image: url("img/mcbg.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        .music a.stop {
+            background-position: 1px bottom;
+
+        }
+
+    </style>
 
 </head>
-<body ng-app="loginApp">
-<div id="dowebok" ng-controller="LoginCtrl">
-    <div class="section" ng-repeat="item in imgList">
-        <img ng-src="{{item.img}}">
-    </div>
-
+<body ng-app="myApp">
+<div class="music">
+    <muscic-play></muscic-play>
 </div>
 <script>
-$(function(){
-    $('#dowebok').fullpage({
-        sectionsColor : getcolorList(),
-        continuousVertical: true
-    });
-});
-    var loginApp = angular.module("loginApp", []);
-    loginApp.controller('LoginCtrl', function ($scope) {
-        $scope.imgList=getimgList();
 
+    var myApp = angular.module("myApp", []);
+    myApp.controller('LoginCtrl', function ($scope) {
+        // $scope.imgList = getimgList();
     });
 
+    myApp.directive("muscicPlay", function (MusciData) {
+        return {
+            restrict: 'ACE',
+            scope: {},
+            template: '<a ng-click="musicCil()" ng-class="{on:isplay,stop:!isplay}" ><audio id="music"></audio></a>',
+            controller: function ($scope, $sce, $element) {
+                $scope.getUrl = $sce.trustAsResourceUrl;
+                console.log($element)
+            },
+            link: function (scope) {
+                var mm = document.getElementById("music");
+                var mmm = angular.element(mm);
+                MusicPlay();
+                scope.musicCil = function () {
 
-    function getimgList(){
-        var arr=[];
-        for (var i=0;i<14;i++){
-            var j=i+1;
-            var img="image/img"+j+".jpg";
-            arr.push({img:img});
-        }
-        return arr;
-    }
+                    if(scope.isplay) {
+                        scope.isplay=false;
+                        mmm[0].pause();
+                    }else {
+                        scope.isplay=true;
+                        mmm[0].play();
+                    }
+                };
+                scope.isplay=true;
+                function MusicPlay() {
+                    var num = parseInt(Math.random() * MusciData.getList().length);
+                    mmm.attr("src", MusciData.get(num));
+                }
+                mmm.bind("ended", function (data) {
+                    MusicPlay();
+                });
+                mmm.bind("canplay", function (data) {
+                    // console.log(data)
+                    //MusicPlay();
 
-    function getcolorList(){
-        var arr=[];
-        for (var i=0;i<13;i++){
-            var j=parseInt(Math.random()*899999+100000);
-            //var img="image/img"+j+".jpg";
-            arr.push("#"+j);
+                    this.play()
+                })
+            }
         }
-        return arr;
-    }
+    });
+    myApp.factory("MusciData", function () {
+        var MusciList = [
+            "http://gaoxiaozhen.qiniudn.com/zyddn.mp3",
+            "http://gaoxiaozhen.qiniudn.com/badgirl.mp3",
+            "http://gaoxiaozhen.qiniudn.com/smjhb.mp3",
+
+        ];
+        return {
+            getList: function () {
+                return MusciList;
+            },
+            get: function (i) {
+                return MusciList[i];
+            }
+        }
+    });
+
+
 </script>
 </body>
 </html>
