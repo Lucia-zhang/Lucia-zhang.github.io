@@ -44,9 +44,8 @@ myApp.directive("muscicPlay", function (MusciData) {
 });
 myApp.factory("MusciData", function () {
     var MusciList = [
-        "http://gaoxiaozhen.qiniudn.com/zyddn.mp3",
-        "http://gaoxiaozhen.qiniudn.com/badgirl.mp3",
-        "http://gaoxiaozhen.qiniudn.com/smjhb.mp3",
+        "http://7s1szb.com1.z0.glb.clouddn.com/LoveParadise.mp3"
+
     ];
     return {
         getList: function () {
