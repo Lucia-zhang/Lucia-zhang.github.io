@@ -1,19 +1,521 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>高震Love张君</title>
-    <script src="js/angularjs.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/ng-infinite-scroll.js"></script>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="Shortcut Icon" href="img/favicon.png" />
-    <script src="js/app.js"></script>
-    <script src="js/directive/music.js"></script>
+    <meta charset="utf-8">
+    <meta name="keywords" content="一路有你-特效版模板案例" />
+    <meta name="description" content="诚邀您以及您的家人来参加我们的婚礼，共同见证我们的幸福时刻！点击查看详情..." />
+    <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>一路有你-特效版模板案例</title>
+    <link rel="stylesheet" type="text/css" href="app/dist/wedding/effect/stand1/common/common.css?v=7.3" />
+    <link rel="stylesheet" type="text/css" href="app/wedding/effect/stand1/skin/yiluyouni/app.css?v=7.3&s=1.0" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="app/dist/css/floatnotify.css?v=7.3" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="app/dist/css/photoswipe.css?v=7.3" charset="utf-8">
+
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+    <meta name="keywords" content="一路有你-特效版模板案例" />
+    <meta name="description" content="诚邀您以及您的家人来参加我们的婚礼，共同见证我们的幸福时刻！点击查看详情..." />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+
+    <style>
+        .page-Opacity{display:block!important ;z-index:0!important ;opacity:0!important }
+        .z-translateY{-webkit-transform:translateY(100%);-moz-transform:translateY(100%);-o-transform:translateY(100%);transform:translateY(100%);box-shadow:0 0 0 0 #333}
+    </style>
+
 </head>
-<body ng-app="myApp">
-<div class="music">
-    <muscic-play></muscic-play>
+<body id="myApp" class="app">
+
+<!--app loading-->
+<div id="app-loading" class="app-loading" onload="checkPc()">
+    <div class="cycleWrap">
+        <span class="cycle cycle-1"></span>
+        <span class="cycle cycle-2"></span>
+        <span class="cycle cycle-3"></span>
+        <span class="cycle cycle-4"></span>
+    </div>
+    <div class="lineWrap">
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+    </div>
 </div>
+<!--app loading end-->
+
+
+<!--app header-->
+<header class="app-header">
+    <a href="javascript:void(0);" class="u-globalAudio">
+        <i class="icon-music"></i>
+        <audio id="media"  src="http://cc.stream.qqmusic.qq.com/101825847.m4a?fromtag=30" autoplay="autoplay" loop="loop"></audio>
+    </a>
+</header>
+<!--app header end-->
+
+<div id="MainContent" class="content-box"></div>
+
+<script id="app_template" type="ext/template">
+    <!--app content-->
+    <section class="app-content">
+        <!--启动页page-->
+
+        {{if effect.coveretc.value == 'kiss'}}
+        <section class="page page-kiss page-index z-current" >
+            <section class="page-content">
+                <div class="m-animationBox {{effect.animatype}}" data-plugin="{{effect.floatetc.value}}"></div>
+                <div id="appCover" class="app-cover">
+                    <span id="kissLip" class="kiss-lip"></span>
+                </div>
+                <div qj-name="cover.backphone"  class="m-foregroundImg backgroundImage" style="background-image:url({{cover.backphone.value}});display: none"></div>
+                <div class="tit_cir"><h1><span qj-name="base.bridegroom">{{base.bridegroom.value}}</span> &amp;<span qj-name="base.bride.value">{{base.bride.value}}</span></h1>
+                    <p><span qj-name="base.weddate">{{base.weddate.value}}</span> <span qj-name="base.wedtime">{{base.wedtime.value}}</span></p>
+                </div>
+            </section>
+        </section>
+        {{/if}}
+
+        {{if effect.coveretc.value == 'fingerprint'}}
+        <!-- 指纹识别 -->
+        <section class="page page-fingerprint page-index z-current">
+            <section class="page-content">
+                <div class="m-animationBox {{effect.animatype}}" data-plugin="{{effect.floatetc.value}}"></div>
+                <div id="finger_print" class="pagecontent" style="transform: scale(1, 1);z-index: 1;">
+                    <div id="finger_print_kuang" class="kuang" ></div>
+                    <div id="finger_print_zwt" class="zwt"></div>
+                    <div id="finger_print_line" class="line"></div>
+                    <div id="finger_print_scaninfo" class="scaninfo">长按扫描</div>
+                    <div id="finger_print_zw" class="zw" style=""></div>
+                </div>
+                <div qj-name="cover.backphone"  class="m-foregroundImg backgroundImage" style="background-image:url('uploadfile/201505/Z7fEf2/b6690b73-6ba1-41e5-9bb4-a69321c1897a_min.jpg');display: none"></div>
+                <div class="tit_cir"><h1><span qj-name="base.bridegroom">{{base.bridegroom.value}}</span> &amp;<span qj-name="base.bride.value">{{base.bride.value}}</span></h1>
+                    <p><span qj-name="base.weddate">{{base.weddate.value}}</span> <span qj-name="base.wedtime">{{base.wedtime.value}}</span></p>
+                </div>
+            </section>
+        </section>
+        {{/if}}
+
+        {{if effect.coveretc.value == 'guaguaka'}}
+        <section class="page page-index z-current">
+            <section class="page-content">
+                <div class="m-animationBox {{effect.animatype}}"  data-plugin="{{effect.floatetc.value}}"></div>
+                <div id="lotteryContainer" class="translate-front z-show">
+                    <img class="cover-lottery" src="app/wedding/effect/stand1/skin/xicongtianjian/img/mask_bg.jpg"  style="display: none" />
+                    <img class="cover-background" src="{{cover.backphone.value}}"  style="display: none" />
+                </div>
+                <div qj-name="cover.backphone"  class="m-foregroundImg backgroundImage" style="background-image:url({{cover.backphone.value}});display: none"></div>
+                <div class="tit_cir"><h1><span qj-name="base.bridegroom">{{base.bridegroom.value}}</span> &amp;<span qj-name="base.bride.value">{{base.bride.value}}</span></h1>
+                    <p><span qj-name="base.weddate">{{base.weddate.value}}</span> <span qj-name="base.wedtime">{{base.wedtime.value}}</span></p>
+                </div>
+            </section>
+        </section>
+        {{/if}}
+
+        {{if effect.coveretc.value == 'sandian'}}
+        <section class="page page-index page-mask " >
+            <section class="page-content">
+                <div class="m-animationBox {{effect.animatype}}" data-plugin="{{effect.floatetc.value}}"></div>
+                <section class="m-mask">
+                    <style></style>
+                    <div class="mask-circle  mask-circle-1 ">
+                        <div class="mask-circle-shadow-1"></div>
+                    </div>
+                    <div class="mask-circle mask-circle-2">
+                        <div class="mask-circle-shadow-2"></div>
+                    </div>
+                    <div class="mask-circle mask-circle-3">
+                        <div class="mask-circle-shadow-3"></div>
+                    </div>
+                    <div class="mask-img">
+                        <div class="mask-img-front">
+                            <div class="mask-handIcon"></div>
+                        </div>
+                        <div class="mask-img-back touch-4"
+                             style="background-image: url({{cover.backphone.value}});">
+                            <div class="tit_cir"><h1><span qj-name="base.bridegroom">{{base.bridegroom.value}}</span> &amp;<span qj-name="base.bride.value">{{base.bride.value}}</span></h1>
+                                <p><span qj-name="base.weddate">{{base.weddate.value}}</span> <span qj-name="base.wedtime">{{base.wedtime.value}}</span></p>
+                            </div>
+                        </div>
+                        <div class="mask-img-touch touch-1"
+                             style="background-image: url({{cover.backphone.value}});"></div>
+                        <div class="mask-img-touch touch-2"
+                             style="background-image: url({{cover.backphone.value}});"></div>
+                        <div class="mask-img-touch touch-3"
+                             style="background-image: url({{cover.backphone.value}});"></div>
+                    </div>
+                </section>
+            </section>
+        </section>
+        {{/if}}
+
+
+
+
+        {{if effect.coveretc.value == ''}}
+        <section class="page  page-no" typekey="base" data-plugin-type="info_front">
+            <section class="page-content">
+                <div class="m-animationBox {{effect.animatype}}" data-plugin="{{effect.floatetc.value}}">
+                    <div class="wed1"></div>
+                    <div class="wed2"></div>
+                    <div class="wed3"></div>
+                    <div class="wed4"></div>
+                    <div class="wed5"></div>
+                    <div class="wed6"></div>
+                    <div class="wed7"></div>
+                    <div class="m-foregroundImg"></div>
+                </div>
+            </section>
+        </section>
+
+        <section qj-name="cover.backphone"   class="page page-link backgroundImage" data-plugin-type="info_link"
+                 style="background-image:url({{cover.backphone.value}});" >
+            <div class="tit_cir cover ">
+                <h1><span qj-name="base.bridegroom">{{base.bridegroom.value}}</span> &amp;<span qj-name="base.bride.value">{{base.bride.value}}</span></h1>
+                <p><span qj-name="base.weddate">{{base.weddate.value}}</span> <span qj-name="base.wedtime">{{base.wedtime.value}}</span></p>
+            </div>
+        </section>
+        {{/if}}
+
+
+        <!--启动页page end-->
+        <!--图文介绍page-->
+        {{if pics.show.value == '0'}}
+        <section class="page page-teletext" typekey="story">
+            <section class="page-content">
+                <ul class="m-cascadingTeletext" id="J_my-story-phone" >
+                    <li title="爱你如火" decp="如果相逢是一场烟火，那么美丽就是上天赐给我们的留恋">
+                        <img title="爱你如火" src="uploadfile/201505/Z7fEf2/25f44dd9-5681-4480-afd7-d196bdcc3ef1.jpg"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">爱你如火</h3>
+                            <p class="story-content">如果相逢是一场烟火，那么美丽就是上天赐给我们的留恋</p>
+                        </div>
+                    </li>
+                    <li title="爱，不需要解释" decp="一些爱，不需要解释，微笑，便可向暖">
+                        <img title="爱，不需要解释" src="uploadfile/201505/Z7fEf2/5c4353ee-a728-48a4-9ce9-7b656ff5ffda.jpg"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">爱，不需要解释</h3>
+                            <p class="story-content">一些爱，不需要解释，微笑，便可向暖</p>
+                        </div>
+                    </li>
+                    <li title="自从你出现后" decp="我才知道原来有人爱是那麽的美好,曾经迷惘的心中,是你牵引我走出寂寞,我爱你的心是直到世界末日也不变">
+                        <img title="自从你出现后" src="uploadfile/201505/Z7fEf2/355cad72-a2a9-4deb-b110-946a6fe9a2f6.jpg"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">自从你出现后</h3>
+                            <p class="story-content">我才知道原来有人爱是那麽的美好,曾经迷惘的心中,是你牵引我走出寂寞,我爱你的心是直到世界末日也不变</p>
+                        </div>
+                    </li>
+                    <li title="就把你深深藏在我心中" decp="我想在五十年之后我一定还是像现在一样爱你，我不要短暂的温存，只要你一世的陪伴">
+                        <img title="就把你深深藏在我心中" src="uploadfile/201505/Z7fEf2/4e8a0966-a88c-42bd-af04-c547e1ad9fb2.jpg"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">就把你深深藏在我心中</h3>
+                            <p class="story-content">我想在五十年之后我一定还是像现在一样爱你，我不要短暂的温存，只要你一世的陪伴</p>
+                        </div>
+                    </li>
+                    <li title="请你当我手心里的宝" decp="只因你太美好令我无法坦白说出我爱你,不知道爱你算不算是一个贴心的理由?我想要和你一起慢慢变老">
+                        <img title="请你当我手心里的宝" data-original="uploadfile/201505/Z7fEf2/a7cf918a-270b-4c3b-8b36-0713a788495c.jpg" src="app/images/blank.gif"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">请你当我手心里的宝</h3>
+                            <p class="story-content">只因你太美好令我无法坦白说出我爱你,不知道爱你算不算是一个贴心的理由?我想要和你一起慢慢变老</p>
+                        </div>
+                    </li>
+                    <li title="我不愿意将就" decp="如果世界上曾经有那个人出现过，其他人都会变成将就">
+                        <img title="我不愿意将就" data-original="uploadfile/201505/Z7fEf2/d5ac254c-5260-4527-ae28-751d719ee09b.jpg" src="app/images/blank.gif"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">我不愿意将就</h3>
+                            <p class="story-content">如果世界上曾经有那个人出现过，其他人都会变成将就</p>
+                        </div>
+                    </li>
+                    <li title="来世今生" decp="不管今生也好来世也好....我所要的只有你，虽然不能满足你最大的物质生活...但我可以把我的心来满足你，我想对你爱恋的极短诗篇升华为漫长的生活散文">
+                        <img title="来世今生" data-original="uploadfile/201505/Z7fEf2/4db2234c-167a-49cc-962b-8f325f9c8742.jpg" src="app/images/blank.gif"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">来世今生</h3>
+                            <p class="story-content">不管今生也好来世也好....我所要的只有你，虽然不能满足你最大的物质生活...但我可以把我的心来满足你，我想对你爱恋的极短诗篇升华为漫长的生活散文</p>
+                        </div>
+                    </li>
+                    <li title="每天...很想你..." decp="因为知道不能没有你,所以我会更珍惜,地球仍然转着,世间依旧善变,而我永远爱你,在每一个有你相伴的夜,不再过於寂寥冷清">
+                        <img title="每天...很想你..." data-original="uploadfile/201505/Z7fEf2/66fbd770-9d57-4b6e-9921-1d209c4598c0.jpg" src="app/images/blank.gif"/>
+                        <div class="imgText ps-toolbar">
+                            <h3 class="story-title">每天...很想你...</h3>
+                            <p class="story-content">因为知道不能没有你,所以我会更珍惜,地球仍然转着,世间依旧善变,而我永远爱你,在每一个有你相伴的夜,不再过於寂寥冷清</p>
+                        </div>
+                    </li>
+                </ul>
+                <a href="javascript:void(0);" class="u-guidePrev z-move">prev</a>
+                <a href="javascript:void(0);" class="u-guideNext z-move">next</a>
+            </section>
+        </section>
+        {{/if}}
+        <!--图文介绍page end-->
+        <!--视频展示page-->
+        {{if video.show.value == '0'}}
+        <section class="page page-video" data-plugin-type="video_brand" typekey="video">
+            <section class="page-content m-play">
+                <!-- 优酷视频 -->
+                <a href="javascript:void(0);" class="m-btnPlay a-bouncein">
+                    <i></i>
+                    <div></div>
+                </a>
+                <span class="video-hander"></span>
+                <span class="video-bottom"></span>
+                <div class="u-maskLayer m-youkuVideoLayer z-hide">
+                    <div class="m-youkuVideo" data-devid="" data-src="{{video.playurl.value}}"></div>
+                </div>
+            </section>
+        </section>
+        {{/if}}
+        <!--视频展示page end-->
+        <!--图文链接page-->
+        {{if article.show.value == '0'}}
+        <section id="whole" class="page page-link page-welcome" data-plugin-type="info_link" typekey="article">
+            <section class="page-content">
+
+                <div class="welcome-box">
+                    <div class="wel-head">
+                        <span><img qj-name="cover.headimg" src="uploadfile/201505/Z7fEf2/ce1b0784-4c3d-46e8-b2e6-3a33d0a562f5_min.jpg" width="100%" /></span>
+                    </div>
+                    <div class="wel-content">
+                        {{if guest}}<div class="guest">{{sender}} 恭请 <span>{{guest}}</span>光临</div>{{/if}}
+                        <div class="hotel" qj-name="base.hotel">{{base.hotel.value?base.hotel.value:'人民大会堂宴会厅'}}</div>
+                        <div class="welcome" qj-name="base.wedtype">{{base.wedtype.value?base.wedtype.value:'WELCOME TO OUR WEDDING'}}</div>
+                        <div class="address">（<span qj-name="base.address">{{base.address.value?base.address.value:'北京市西城区西长安街'}}</span>）</div>
+                        <div class="line"></div>
+                        <div class="date"><span qj-name="base.weddate">{{base.weddate.value}}</span> <span qj-name="base.wedtime">{{base.wedtime.value}}</span></div>
+                        <div class="newman"><span qj-name="base.bridegroom">{{base.bridegroom.value?base.bridegroom.value:'五阿哥'}}</span>&<span qj-name="base.bride">{{base.bride.value?base.bride.value:'小燕子'}}</span></div>
+                    </div>
+
+                    <!--链接组件-->
+                    <div class="m-link">
+                        <!--文本链接-->
+                        <a href="weixin:share" class="imgLink"> </a>
+                        <!--如果是分享链接则输出分享层-->
+                        <div class="u-maskLayer m-weixinShareLayer z-hide">
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+        </section>
+        {{/if}}
+        <!--图文链接page end-->
+        <!--图文链接page-->
+        <section class="page page-reback" data-plugin-type="info_link">
+            <section class="page-content">
+                <div class="wed"></div>
+                <div class="invitation-card">
+                    <div class="go_in in"  id="myLeave">
+                        <a href="javascript:void(0);" >
+                        </a>
+                    </div>
+                    <div class="go_in zl" >
+                        <a href="app/map.do?point={{map.mappoint.value}}&title={{'一路有你-特效版模板案例' | encodeFormat}}&hotel={{base.hotel.value | encodeFormat }}&addr={{base.address.value | encodeFormat}}&searchaddr={{map.searchaddr.value | encodeFormat}}&bus={{map.bus.value | encodeFormat}}&mainpic={{share.mainpic.value | encodeFormat}}" ></a>
+                    </div>
+                </div>
+            </section>
+            <!--Start 留言-->
+            <div class="mod-message cpm-hide" id="message">
+                <span class="message-close"></span>
+                <div class="message-form">
+                    <form id="J_rebook">
+                        <p class="count-line">共<span class="many" id="J_total" style="color:white">0</span>人留言</p>
+                        <p class="form-line">
+                            <input type="text" class="ipt" placeholder="您的姓名(Name)" name="guestname" style="width:40%;">
+                            <input type="text" class="ipt" placeholder="您的电话(Tel)" name="guesttel" style="width:60%;">
+                        </p>
+                        <p class="form-line">
+                            <select name="guestnum" class="ipt" style="width:40%; float:left">
+                                <option value="1">1人出席</option>
+                                <option  selected="" value="2">2人出席</option>
+                                <option value="3">3人出席</option>
+                                <option value="4">4人出席</option>
+                                <option value="5">5人出席</option>
+                                <option value="6">6人出席</option>
+                                <option value="7">7人出席</option>
+                                <option value="8">8人出席</option>
+                                <option value="9">9人出席</option>
+                                <option value="0">无法出席</option>
+                            </select>
+                            <select name="guesttype" class="ipt" style="width:60%">
+                                <option selected="" value="1">来自男方亲友</option>
+                                <option value="2">来自女方亲友</option>
+                            </select>
+                        </p>
+                        <p class="form-line">
+                            <textarea class="textarea ipt"  name="bookcontent" id="J_content"  placeholder="送上您的祝福(Blessing)"  style="height:50px "></textarea>
+                        </p>
+                        <div id="J_face_icon" class="face-icon">
+                            <div class="emotion">
+                                <span title="爱情" rel="爱情"><img src="app/expression/wd/aiqing.png"></span>
+                                <span title="蛋糕" rel="蛋糕"><img src="app/expression/wd/dangao.png"></span>
+                                <span title="红包" rel="红包"><img src="app/expression/wd/hongbao.gif"></span>
+                                <span title="恭喜" rel="恭喜"><img src="app/expression/wd/gongxi.png"></span>
+                                <span title="给力" rel="给力"><img src="app/expression/wd/geili.gif"></span>
+                                <span title="鼓掌" rel="鼓掌"><img src="app/expression/wd/guzhang.gif"></span>
+                                <span title="坏笑" rel="坏笑"><img src="app/expression/wd/huaixiao.gif"></span>
+                                <span title="婚纱" rel="婚纱"><img src="app/expression/wd/hunsha.png"></span>
+                                <span title="婚鞋" rel="婚鞋"><img src="app/expression/wd/hunxie.png"></span>
+                                <span title="脚印" rel="脚印"><img src="app/expression/wd/jiaoyin.png"></span>
+                                <span title="玫瑰" rel="玫瑰"><img src="app/expression/wd/meigui.png"></span>
+                                <span title="亲亲" rel="亲亲"><img src="app/expression/wd/qinqin.gif"></span>
+                                <span title="帅" rel="帅"><img src="app/expression/wd/shuai.png"></span>
+                                <span title="喜庆" rel="喜庆"><img src="app/expression/wd/xiqing.png"></span>
+                                <span title="携手" rel="携手"><img src="app/expression/wd/xieshou.gif"></span>
+                                <span title="心形" rel="心形"><img src="app/expression/wd/xinxing.png"></span>
+                                <span title="心意" rel="心意"><img src="app/expression/wd/xinyi.png"></span>
+                                <span title="钻戒" rel="钻戒"><img src="app/expression/wd/zuanjie.png"></span>
+                                <span title="赞啊" rel="赞啊"><img src="app/expression/wd/zana.gif"></span>
+                                <span title="气球" rel="气球"><img src="app/expression/wd/qiqiu.png"></span>
+                                <span title="道贺" rel="道贺"><img src="app/expression/wd/daohe.gif"></span>
+                                <span title="钞票" rel="钞票"><img src="app/expression/wd/chaopiao.png"></span>
+                            </div>
+                        </div>
+                        <p class="btn-line">
+                            <span class="btn-submit" id="J_SaveReback_btn" >提交</span>
+                        </p>
+                    </form>
+                </div>
+                <div  id="leaveContent" class="message-list"  data-sitecode="8050305382308440">
+                    <ul id="J_book_list">
+
+                    </ul>
+                    <div id="J_book_more" class="ui-refresh-down">
+                        <span class="ui-refresh-icon">+</span><span class="ui-refresh-label">点击加载更多</span>
+                    </div>
+                </div>
+            </div>
+            <!--End 留言-->
+
+
+        </section>
+        <!--图文链接page end-->
+    </section>
+    <!--app content end-->
+
+
+</script>
+
+<script id="app_pic_template" type="ext/template">
+    <!-- 相册模板 -->
+    {{each list as item i}}
+    <li title="{{item.picname}}" decp="{{item.decp}}">
+        <img alt="{{item.picname}}" src="{{item.filepath}}"/>
+        {{if item.picname && item.picname!=''}}
+        <div class="imgText ps-toolbar">
+            <h3 class="story-title">{{item.picname}}</h3>
+            <p class="story-content">{{item.decp}}</p>
+        </div>
+        {{/if}}
+    </li>
+    {{/each}}
+</script>
+
+<script id="app_rebook_template" type="ext/template">
+    <!-- 回执模板 -->
+    {{if total==0}}
+    <li style="text-align: center;">暂无留言信息</li>
+    {{else}}
+    {{each list as item i}}
+    <li><p><span class="name">{{item.guestname}}</span>说：</p><div class="txt">{{#item.bookcontent}}</div><p class="time" style="text-align:right">({{item.guesttype=='1'?'男方亲友':'女方亲友'}})&nbsp;{{item.adddatestr}}</p></li>
+    {{/each}}
+    {{/if}}
+</script>
+
+<script src="libs/dist/require/2.1.9/require.js"></script>
+<script type="text/javascript" src="app/dist/js/app-config.js?v=7.3"></script>
+
+<script type="text/javascript">
+    window.configs = window.configs||{};
+    window.configs.baseUrl = 'app/dist/';
+    require.config(window.configs);
+</script>
+
+<!-- 生产模式 -->
+<script type="text/javascript">
+    require([ 'zepto','wedding/effect/js/template','wxShare'],
+            function($) {
+                $(document).ready(function($) {
+
+                    var model = base.util.getQueryName('model');
+
+                    var system = {
+                        win: false,
+                        mac: false,
+                        xll: false
+                    };
+
+                    //检测平台
+                    var p = navigator.platform;
+                    system.win = p.indexOf("Win") == 0;
+                    system.mac = p.indexOf("Mac") == 0;
+                    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+
+                    //跳转语句
+                    if(model !== 'pc') {//非ifram模式
+                        if (system.win || system.mac || system.xll) { //转向电脑端
+                            javascript:window.opener = null;
+                          //  window.open('/mobi/201505/Z7fEf2/invitation.html', '_self');
+                            //window.close();
+                        }
+                    }
+
+                    var sitecode = '8050305382308440';
+
+                    var templatecode = '10013';
+
+                    $.getJSON("data.jsonp?v=275", function(data){
+
+                        var guest = base.util.getQueryName('guest'),sender=base.util.getQueryName('sender');
+
+                        if(guest){
+                            data.guest = Base64.decode(guest);
+                            data.sender =  Base64.decode(sender);
+                        }
+
+                        var isPc = /(WindowsNT)|(Windows NT)|(Macintosh)/i.test(navigator.userAgent);
+
+                        myapp.main.init({
+                            sitecode : sitecode,
+                            data : data,
+                            isPc:isPc
+                        });
+
+
+
+
+                        var desc = "诚邀您以及您的家人来参加我们的婚礼，共同见证我们的幸福时刻！点击查看详情...";
+
+                        var title = '一路有你-特效版模板案例';
+
+                        var url = location.href;
+
+                        var imgurl = 'http://wqingjian.comuploadfile/201505/Z7fEf2/fb5f6574-232a-4b78-961c-d72c46328df8_min.jpg';
+
+                        _WXShare(imgurl,65,65,title,desc,url,'');
+
+                    })
+
+
+                });
+            });
+</script>
+
+
+
+<!--移动端兼容适配 -->
+<script type="text/javascript">
+    //微信去掉下方刷新栏
+    if (navigator.userAgent.indexOf('MicroMessenger') >= 0) {
+        document.addEventListener('WeixinJSBridgeReady', function() {
+            //WeixinJSBridge.call('hideToolbar');
+        });
+    }
+</script>
+<!--移动端兼容适配 end -->
+
 </body>
 </html>
